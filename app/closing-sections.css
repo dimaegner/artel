@@ -239,6 +239,7 @@
 .artel-home .contact-form .form-feedback a { color: inherit; }
 
 .artel-home .footer-catalog {
+  display: block;
   padding: 38px var(--page-gutter) 24px;
   color: #c4c4c4;
   background: #222;
