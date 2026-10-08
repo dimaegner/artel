@@ -211,3 +211,5 @@ html{scroll-padding-top:120px}
 .footer-sitemap a{min-height:34px;padding-top:5px;padding-bottom:5px}
 @media(max-width:800px){.metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px}.metrics-section{min-height:580px}.contact-details .contact-address{margin-top:24px;padding-top:0}.contact-address .text-link{margin-bottom:0}}
 @media(max-width:600px){:root{--section-bottom:96px}.metrics-section{min-height:560px}.advantages-section>.section{min-height:0}.advantages-grid{gap:48px}.contact-section .section-heading{margin-bottom:56px}.metric-value{font-size:60px;letter-spacing:-2px}.footer-sitemap a{min-height:36px}}
+.header-actions{display:flex;align-items:center;gap:26px;flex-shrink:0}.header-social{display:grid;place-items:center;width:22px;height:24px;flex:0 0 auto}.header-social img{display:block;width:20px;height:auto;max-height:20px;object-fit:contain}
+@media(max-width:800px){.header-actions{gap:16px}}
