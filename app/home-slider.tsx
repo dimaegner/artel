@@ -2,7 +2,7 @@
 /* oxlint-disable next/no-img-element -- Full-bleed and thumbnail images use the same local source files. */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import ArrowIcon from './arrow-icon';
 import { publicAsset } from '@/lib/public-asset';
 
 const slides = [
@@ -100,7 +100,7 @@ export default function HomeSlider() {
           <span className="showreel-tab-content"><span className="showreel-tab-thumb" aria-hidden="true"/><span className="showreel-tab-copy"><span className="showreel-tab-number">{String(index + 1).padStart(2, '0')}</span><span className="showreel-tab-name">{slide.preview}</span></span></span>
         </button>)}
       </div>
-      <div className="showreel-arrows"><button type="button" aria-label="Предыдущий слайд" onClick={() => goTo(active - 1)}><ArrowLeft size={20}/></button><button type="button" aria-label="Следующий слайд" onClick={() => goTo(active + 1)}><ArrowRight size={20}/></button></div>
+      <div className="showreel-arrows"><button type="button" aria-label="Предыдущий слайд" onClick={() => goTo(active - 1)}><ArrowIcon direction="left"/></button><button type="button" aria-label="Следующий слайд" onClick={() => goTo(active + 1)}><ArrowIcon/></button></div>
     </div>
   </section>;
 }

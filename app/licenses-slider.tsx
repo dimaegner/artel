@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import ArrowIcon from './arrow-icon';
 import { publicAsset } from '@/lib/public-asset';
 
 const documents = [
@@ -11,7 +11,7 @@ const documents = [
   { image: 'license-quality.png', title: 'Сертификат соответствия', alt: 'Сертификат соответствия системы менеджмента качества' },
 ];
 
-export default function LicensesSlider() {
+export default function LicensesSlider({ title }: { title: string }) {
   const track = useRef<HTMLDivElement>(null);
 
   function move(direction: -1 | 1) {
@@ -21,16 +21,19 @@ export default function LicensesSlider() {
     track.current.scrollBy({ left: direction * (firstCard.offsetWidth + gap), behavior: 'smooth' });
   }
 
-  return <div className="licenses-gallery">
-    <div className="licenses-controls">
-      <button type="button" onClick={() => move(-1)} aria-label="Предыдущий документ"><ArrowLeft size={18}/></button>
-      <button type="button" onClick={() => move(1)} aria-label="Следующий документ"><ArrowRight size={18}/></button>
+  return <>
+    <div className="licenses-heading">
+      <p id="licenses-title">{title}</p>
+      <div className="licenses-controls">
+      <button type="button" onClick={() => move(-1)} aria-label="Предыдущий документ"><ArrowIcon direction="left"/></button>
+      <button type="button" onClick={() => move(1)} aria-label="Следующий документ"><ArrowIcon/></button>
+      </div>
     </div>
-    <div className="licenses-track" ref={track}>
+    <div className="licenses-gallery"><div className="licenses-track" ref={track}>
       {documents.map((document) => <figure className="license-document" key={document.image}>
         <img src={publicAsset(`/images/design-reference/${document.image}`)} alt={document.alt} loading="lazy"/>
         <figcaption>{document.title}</figcaption>
       </figure>)}
-    </div>
-  </div>;
+    </div></div>
+  </>;
 }
