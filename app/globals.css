@@ -213,3 +213,9 @@ html{scroll-padding-top:120px}
 @media(max-width:600px){:root{--section-bottom:96px}.metrics-section{min-height:560px}.advantages-section>.section{min-height:0}.advantages-grid{gap:48px}.contact-section .section-heading{margin-bottom:56px}.metric-value{font-size:60px;letter-spacing:-2px}.footer-sitemap a{min-height:36px}}
 .header-actions{display:flex;align-items:center;gap:26px;flex-shrink:0}.header-social{display:grid;place-items:center;width:22px;height:24px;flex:0 0 auto}.header-social img{display:block;width:20px;height:auto;max-height:20px;object-fit:contain}
 @media(max-width:800px){.header-actions{gap:16px}}
+.header-actions{gap:0}.header-social{width:17px;height:20px}.header-social:first-child{margin-right:36px}.header-social:nth-child(2){margin-right:25px}.header-social img{width:auto;height:16px;max-width:17px;max-height:16px}
+.floating-header .header-contact{min-height:0!important;padding:0 0 0 26px!important;border:0!important;border-left:1px solid #ffffff70!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;gap:15px!important;justify-content:flex-start!important;font-size:14px!important;color:#fff!important}
+.floating-header.is-scrolled .header-contact{padding-left:26px!important;border-left-color:#10293570!important;color:var(--ink)!important}
+.header-phone-icon{display:block;width:15px!important;height:15px!important;filter:none!important;object-fit:contain}
+.contact-outline i img{display:block;width:15px;height:15px;object-fit:contain}
+@media(max-width:800px){.header-social:first-child{margin-right:16px}.header-social:nth-child(2){margin-right:12px}.floating-header .header-contact,.floating-header.is-scrolled .header-contact{padding-left:12px!important;gap:8px!important}}
