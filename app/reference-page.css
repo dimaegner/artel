@@ -241,3 +241,16 @@
   .news-badges small{padding:4px 5px;font-size:7px}
 }
 @media(prefers-reduced-motion:reduce){.project-case>img,.news-card>img{transition:none}}
+
+/* Fixed navigation with a smooth scroll state; it no longer jumps from absolute to fixed positioning. */
+.home-hero-shell>.floating-header,.home-hero-shell>.floating-header.is-scrolled{position:fixed;z-index:50;inset:0 0 auto;width:100%;max-width:none;min-height:76px;margin:0;padding:0 var(--page-gutter);transform:none;border:0;border-bottom:1px solid #ffffff85;border-radius:0;background:transparent;box-shadow:none;color:#fff;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0);transition:min-height .42s cubic-bezier(.2,.75,.25,1),background-color .42s ease,border-color .42s ease,box-shadow .42s ease,color .32s ease,backdrop-filter .42s ease,-webkit-backdrop-filter .42s ease}
+.home-hero-shell>.floating-header.is-scrolled{min-height:62px;border-bottom-color:#ffffff22;background:#171717ed;box-shadow:0 5px 22px #0002;color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.home-hero-shell>.floating-header .brand-logo,.home-hero-shell>.floating-header.is-scrolled .brand-logo{transition:width .42s cubic-bezier(.2,.75,.25,1),opacity .32s ease}
+.home-hero-shell>.floating-header .desktop-nav a{position:relative;transition:color .24s ease,opacity .24s ease}
+.home-hero-shell>.floating-header .desktop-nav a::after{content:"";position:absolute;right:0;bottom:2px;left:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .28s cubic-bezier(.2,.75,.25,1)}
+.home-hero-shell>.floating-header .desktop-nav a:hover::after,.home-hero-shell>.floating-header .desktop-nav a:focus-visible::after{transform:scaleX(1)}
+.home-hero-shell>.floating-header .desktop-nav a:hover{box-shadow:none}
+.home-hero-shell>.floating-header .desktop-nav a svg{transition:transform .28s ease}
+.home-hero-shell>.floating-header .desktop-nav a:hover svg{transform:translateY(2px)}
+@media(max-width:700px){.home-hero-shell>.floating-header,.home-hero-shell>.floating-header.is-scrolled{min-height:54px;padding-right:var(--page-gutter);padding-left:var(--page-gutter)}.home-hero-shell>.floating-header.is-scrolled{min-height:50px}}
+@media(prefers-reduced-motion:reduce){.home-hero-shell>.floating-header,.home-hero-shell>.floating-header *{transition-duration:.01ms!important;animation-duration:.01ms!important}}
