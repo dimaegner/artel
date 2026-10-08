@@ -1,5 +1,6 @@
 'use client';
 import { useState, type FormEvent } from 'react';
+import { Check } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -13,12 +14,11 @@ export default function ContactForm(){
   window.location.href='mailto:info@arteltmn.ru?subject='+encodeURIComponent('Заявка на исследование объекта')+'&body='+encodeURIComponent(body);
   setPrepared(true);
  }
- return <form className="contact-form" onSubmit={prepare}>
- <h3>Оставить заявку</h3>
+ return <form className="contact-form" id="contact-form" onSubmit={prepare}>
  <div className="form-row"><label htmlFor="name">Ваше имя<Input id="name" name="name" placeholder="Как к вам обращаться" autoComplete="name" maxLength={100} required/></label><label htmlFor="phone">Телефон<Input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" autoComplete="tel" maxLength={30} minLength={7} required/></label></div>
  <label htmlFor="object">Расположение объекта<Input id="object" name="object" placeholder="Город или адрес" maxLength={240}/></label>
  <label htmlFor="task">Задача<Textarea id="task" name="task" placeholder="Что необходимо исследовать или проверить?" rows={3} maxLength={2000} required/></label>
- <div className="form-bottom"><Button type="submit" className="form-submit">Подготовить заявку</Button></div>
+ <div className="form-bottom"><Button type="submit" className="form-submit">Отправить <i aria-hidden="true"><Check size={17}/></i></Button></div>
  {prepared&&<p className="form-feedback" role="status">Если почтовое приложение не открылось, напишите на <a href="mailto:info@arteltmn.ru">info@arteltmn.ru</a> или позвоните нам.</p>}
  </form>
 }

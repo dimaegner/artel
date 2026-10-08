@@ -1,9 +1,12 @@
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ExternalLink, MessageCircle, Send } from 'lucide-react';
 import SiteHeader from './site-header';
 import HomeSlider from './home-slider';
+import ContactForm from './contact-form';
+import LicensesSlider from './licenses-slider';
 import { publicAsset } from '@/lib/public-asset';
 import './redesign.css';
 import './reference-page.css';
+import './closing-sections.css';
 
 const services = [
   { title: 'Обследование зданий и сооружений', image: 'ref-01.webp', href: 'https://arteltmn.ru/2019/07/28/obsledovanie-tehnicheskogo-sostojanija-zdanij-i-sooruzhenij/' },
@@ -72,6 +75,59 @@ export default function HomePage() {
         <div className="news-heading"><h2 id="news-title">События и новости компании</h2><a className="projects-more" href="https://arteltmn.ru/novosti/" target="_blank" rel="noreferrer"><span>Больше готовых проектов,<br/>разделённых по направлениям</span><i><ArrowRight size={18}/></i></a></div>
         <div className="news-grid">{news.map((item) => <a className="news-card" href="https://arteltmn.ru/novosti/" key={item.title} target="_blank" rel="noreferrer"><img src={publicAsset(`/images/design-reference/${item.image}`)} alt="" loading="lazy"/><span className="news-badges"><span>{item.title}</span><small>{item.note}</small></span></a>)}</div>
       </section>
+
+      <section className="licenses-section" id="licenses" aria-labelledby="licenses-title">
+        <h2 id="licenses-title">Лицензии, свидетельства и сертификаты нашей компании</h2>
+        <LicensesSlider/>
+      </section>
+
+      <section className="faq-section" id="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Частые вопросы</h2>
+        <div className="faq-list">
+          <details>
+            <summary>Когда заказывают обследование зданий?</summary>
+            <p>Обследование заказывают, если появились трещины или деформации, перед ремонтом или реконструкцией, при покупке объекта, споре о качестве работ или необходимости оценить безопасность дальнейшей эксплуатации.</p>
+          </details>
+          <details open>
+            <summary>Что входит в результат обследования?</summary>
+            <p>По итогам обследования вы получаете техническое заключение о состоянии здания или сооружения. Документ включает результаты визуального и инструментального обследования, выявленные дефекты и повреждения, оценку технического состояния конструкций, фотографии, результаты измерений и расчётов при их проведении. Также заключение содержит выводы специалистов и рекомендации по устранению выявленных недостатков, ремонту, усилению конструкций или дальнейшей безопасной эксплуатации объекта — в зависимости от задач обследования.</p>
+          </details>
+          <details>
+            <summary>Можно ли проверить объём и стоимость строительных работ?</summary>
+            <p>Да. Строительно-техническое исследование помогает сопоставить фактически выполненные работы с проектом и сметой, оценить качество и зафиксировать выявленные расхождения.</p>
+          </details>
+          <details>
+            <summary>Как узнать стоимость работ?</summary>
+            <p>Стоимость зависит от объекта, состава работ и задачи исследования. Опишите объект и вопрос в форме ниже — специалисты уточнят необходимые исходные данные и подготовят расчёт.</p>
+          </details>
+        </div>
+      </section>
+
+      <section className="contact-section" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Контакты и адрес</h2>
+        <div className="contact-layout">
+          <address className="contact-details">
+            <div className="contact-item"><span>Телефон</span><a href="tel:+73452606055">+7 3452 60 60 55</a><a href="tel:+73452605960">+7 3452 60 59 60</a></div>
+            <div className="contact-item"><span>Эл. почта</span><a href="mailto:info@arteltmn.ru">info@arteltmn.ru</a></div>
+            <div className="contact-item"><span>Адрес офиса</span><p>Тюмень, ул. Республики, 14/1, 3 этаж</p><a className="contact-outline" href="https://yandex.ru/maps/?text=%D0%A2%D1%8E%D0%BC%D0%B5%D0%BD%D1%8C%2C%20%D1%83%D0%BB.%20%D0%A0%D0%B5%D1%81%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B8%2C%2014%2F1" target="_blank" rel="noreferrer">Открыть на карте <i><ExternalLink size={16}/></i></a></div>
+            <div className="contact-socials">
+              <a className="contact-outline" href="https://max.ru/" target="_blank" rel="noreferrer">Написать в MAX <i><MessageCircle size={15}/></i></a>
+              <a className="contact-outline" href="https://vk.com/" target="_blank" rel="noreferrer">Написать в VK <i><Send size={15}/></i></a>
+            </div>
+          </address>
+          <ContactForm/>
+        </div>
+      </section>
     </main>
+    <footer className="footer-catalog" id="footer">
+      <div className="footer-main">
+        <div className="footer-brand"><a href="#home" aria-label="Артель — на главную"><img src={publicAsset('/images/artel-logo.svg')} alt="Артель — региональный центр строительных исследований"/></a><p>© 2026 РЦСИ «Артель»</p></div>
+        <nav className="footer-column" aria-label="Сайт"><h2>Сайт</h2><a href="#home">Главная</a><a href="#services">Услуги</a><a href="#projects">Реализованные объекты</a><a href="#about">О компании</a><a href="#news">Новости</a><a href="#contact">Контакты</a></nav>
+        <nav className="footer-column" aria-label="Услуги"><h2>Услуги</h2><a href="#services">Обследование зданий и сооружений</a><a href="#services">Строительно-техническая судебная экспертиза</a><a href="#services">Проектирование зданий и сооружений</a><a href="#services">Геодезические работы</a><a href="#services">Сопровождение строительства</a></nav>
+        <nav className="footer-column" aria-label="О компании"><h2>О компании</h2><a href="https://arteltmn.ru/rekvizity/" target="_blank" rel="noreferrer">Реквизиты</a><a href="https://arteltmn.ru/o-nas/" target="_blank" rel="noreferrer">Команда</a><a href="#news">Техническая база</a><a href="#licenses">Лицензии и сертификаты</a><a href="#projects">Наши клиенты</a><a href="#reviews">Благодарственные письма и отзывы</a></nav>
+        <nav className="footer-column" aria-label="Проекты"><h2>Проекты</h2><a href="#projects">Экспертизы</a><a href="#projects">Обследования</a><a href="#projects">Проектирование</a></nav>
+      </div>
+      <div className="footer-legal"><p>ИНН 7204159747　 КПП 720301001　 ОГРН 1107232034282</p><div><a href="https://arteltmn.ru/politika-konfidencialnosti/" target="_blank" rel="noreferrer">Политика обработки персональных данных</a><a href="https://arteltmn.ru/politika-konfidencialnosti/" target="_blank" rel="noreferrer">Согласие на обработку персональных данных</a></div></div>
+    </footer>
   </div>;
 }
