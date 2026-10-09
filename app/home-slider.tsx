@@ -46,6 +46,7 @@ export default function HomeSlider() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [hasOverflowRight, setHasOverflowRight] = useState(false);
   const elapsed = useRef(0);
   const lastFrame = useRef<number | null>(null);
   const rail = useRef<HTMLDivElement>(null);
@@ -79,9 +80,43 @@ export default function HomeSlider() {
   }, [active, paused, goTo]);
 
   useEffect(() => {
-    const selected = rail.current?.querySelector<HTMLButtonElement>(`[data-slide="${active}"]`);
-    if (selected && rail.current) rail.current.scrollTo({ left: selected.offsetLeft - rail.current.offsetLeft, behavior: 'smooth' });
+    const container = rail.current;
+    const selected = container?.querySelector<HTMLButtonElement>(`[data-slide="${active}"]`);
+    if (!container || !selected) return;
+
+    const current = container.scrollLeft;
+    const selectedLeft = selected.offsetLeft;
+    const selectedRight = selectedLeft + selected.offsetWidth;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    let target = current;
+
+    if (selectedLeft < current) {
+      target = selectedLeft;
+    } else if (selectedRight > current + container.clientWidth) {
+      const firstTab = container.querySelector<HTMLButtonElement>('.showreel-tab');
+      const gap = Number.parseFloat(getComputedStyle(container).columnGap) || 0;
+      const step = (firstTab?.offsetWidth || selected.offsetWidth) + gap;
+      while (selectedRight > target + container.clientWidth && target < maxScroll) {
+        target = Math.min(target + step, maxScroll);
+      }
+    }
+
+    if (Math.abs(target - current) > 1) container.scrollTo({ left: target, behavior: 'smooth' });
   }, [active]);
+
+  useEffect(() => {
+    const container = rail.current;
+    if (!container) return;
+    const updateOverflow = () => setHasOverflowRight(container.scrollWidth > container.clientWidth + container.scrollLeft + 1);
+    updateOverflow();
+    container.addEventListener('scroll', updateOverflow, { passive: true });
+    const observer = new ResizeObserver(updateOverflow);
+    observer.observe(container);
+    return () => {
+      container.removeEventListener('scroll', updateOverflow);
+      observer.disconnect();
+    };
+  }, []);
 
   return <section className="home-showreel" aria-roledescription="слайдер" aria-label="Направления работы Артели">
     {slides.map((slide, index) => <article id={`showreel-slide-${index}`} className={`showreel-slide ${index === active ? 'is-active' : ''}`} key={slide.preview} aria-hidden={index !== active}>
@@ -95,7 +130,7 @@ export default function HomeSlider() {
       <a className="showreel-action-secondary" href="https://max.ru/" target="_blank" rel="noreferrer">Написать в MAX<img src={publicAsset('/images/max-logo.svg')} alt="" aria-hidden="true"/></a>
     </div>
     <div className="showreel-controls" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
-      <div className={`showreel-pagination ${active > 0 ? 'is-shifted' : ''}`} ref={rail} role="tablist" aria-label="Слайды">
+      <div className={`showreel-pagination ${hasOverflowRight ? 'has-overflow-right' : ''}`} ref={rail} role="tablist" aria-label="Слайды">
         {slides.map((slide, index) => <button key={slide.preview} data-slide={index} className={`showreel-tab ${index === active ? 'is-active' : ''}`} type="button" role="tab" aria-selected={index === active} aria-controls={`showreel-slide-${index}`} aria-label={`Слайд ${index + 1}: ${slide.preview}`} onClick={() => goTo(index)}>
           <span className="showreel-progress" aria-hidden="true"><span style={{ width: `${index === active ? progress * 100 : 0}%` }}/></span>
           <span className="showreel-tab-content"><img className="showreel-tab-thumb" src={slide.thumbnail} alt="" aria-hidden="true" loading="lazy"/><span className="showreel-tab-copy"><span className="showreel-tab-number">{String(index + 1).padStart(2, '0')}</span><span className="showreel-tab-name">{slide.preview}</span></span></span>
