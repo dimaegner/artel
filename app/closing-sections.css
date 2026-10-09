@@ -519,3 +519,5 @@
   .artel-home .contact-socials { gap: 8px; }
   .artel-home .contact-social-button { min-height: 44px; font-size: 9px; }
 }
+.home-showreel .showreel-copy{max-width:860px}
+.home-showreel .showreel-copy h1,.home-showreel .showreel-copy h2{max-width:860px}
