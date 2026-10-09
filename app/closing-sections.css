@@ -419,6 +419,7 @@
 .artel-home .contact-form .form-submit i { width: 48px; height: 48px; flex-basis: 48px; }
 .artel-home .contact-form .form-submit { min-height: 48px; }
 .artel-home .contact-form .form-submit > span { min-height: 48px; }
+.artel-home .showreel-action-secondary { color: #fff !important; }
 
 @media (min-width: 1101px) {
   .artel-home .showreel-copy { top: 63.1%; bottom: auto; }
