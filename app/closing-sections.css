@@ -455,3 +455,67 @@
   .artel-home .news-card { flex-basis: 82vw; }
   .artel-home .footer-legal { align-items: flex-start; }
 }
+
+/* Contact row is three information columns plus the designed message buttons. */
+.artel-home .contact-section { padding-bottom: 60px; }
+.artel-home .contact-layout {
+  grid-template-columns: minmax(0, 1fr) 27.7vw;
+  gap: 1.67vw;
+}
+
+.artel-home .contact-details {
+  display: grid;
+  grid-template-columns: 16vw 15.4vw minmax(0, 1fr);
+  gap: 1.67vw;
+  align-items: start;
+}
+
+.artel-home .contact-item { gap: 14px; }
+.artel-home .contact-item > span { font-size: 13px; }
+.artel-home .contact-item a,
+.artel-home .contact-item p { font-size: 16px; }
+.artel-home .contact-actions { display: flex; flex-direction: column; gap: 8px; }
+.artel-home .contact-primary {
+  display: grid;
+  min-height: 48px;
+  place-items: center;
+  background: #fff;
+  color: #222 !important;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.artel-home .contact-socials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.artel-home .contact-social-button {
+  display: flex;
+  min-width: 0;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 8px;
+  border: 1px solid rgba(255,255,255,.8);
+  color: #fff !important;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.artel-home .contact-social-button img { width: 18px; height: 18px; flex: 0 0 18px; object-fit: contain; }
+
+@media (max-width: 900px) {
+  .artel-home .contact-layout { grid-template-columns: minmax(0, 1fr) 27.7vw; gap: 1.67vw; }
+  .artel-home .contact-details { grid-template-columns: 16vw 15.4vw minmax(0, 1fr); gap: 1.67vw; }
+}
+
+@media (max-width: 640px) {
+  .artel-home .contact-section { padding-bottom: 36px; }
+  .artel-home .contact-layout { grid-template-columns: 1fr; gap: 32px; margin-top: 82px; }
+  .artel-home .contact-details { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+  .artel-home .contact-item:nth-child(3) { grid-column: 1 / -1; }
+  .artel-home .contact-actions { width: 100%; }
+  .artel-home .contact-socials { gap: 8px; }
+  .artel-home .contact-social-button { min-height: 44px; font-size: 9px; }
+}

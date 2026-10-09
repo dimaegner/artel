@@ -1,7 +1,6 @@
 import ArrowIcon from './arrow-icon';
 import SiteHeader from './site-header';
 import HomeSlider from './home-slider';
-import ContactForm from './contact-form';
 import LicensesSlider from './licenses-slider';
 import NewsSlider from './news-slider';
 import { publicAsset } from '@/lib/public-asset';
@@ -109,12 +108,14 @@ export default function HomePage() {
             <div className="contact-item"><span>Телефон</span><a href="tel:+73452606055">+7 3452 60 60 55</a><a href="tel:+73452605960">+7 3452 60 59 60</a></div>
             <div className="contact-item"><span>Эл. почта</span><a href="mailto:info@arteltmn.ru">info@arteltmn.ru</a></div>
             <div className="contact-item"><span>Адрес офиса</span><p>Тюмень, ул. Республики, 14/1, 3 этаж</p><a className="contact-outline" href="https://yandex.ru/maps/?text=%D0%A2%D1%8E%D0%BC%D0%B5%D0%BD%D1%8C%2C%20%D1%83%D0%BB.%20%D0%A0%D0%B5%D1%81%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B8%2C%2014%2F1" target="_blank" rel="noreferrer"><span>Проложить маршрут</span><i><img src={publicAsset('/images/map-open-icon.svg')} alt="" aria-hidden="true"/></i></a></div>
-            <div className="contact-socials">
-              <a className="contact-outline" href="https://max.ru/" target="_blank" rel="noreferrer"><span>Написать в MAX</span><i><img src={publicAsset('/images/max-logo.svg')} alt="" aria-hidden="true"/></i></a>
-              <a className="contact-outline" href="https://vk.com/" target="_blank" rel="noreferrer"><span>Группа в ВК</span><i><img src={publicAsset('/images/vk-logo.svg')} alt="" aria-hidden="true"/></i></a>
-            </div>
           </address>
-          <ContactForm/>
+          <div className="contact-actions">
+            <a className="contact-primary" href="mailto:info@arteltmn.ru">Написать нам</a>
+            <div className="contact-socials">
+              <a className="contact-social-button" href="https://max.ru/" target="_blank" rel="noreferrer"><span>Написать в MAX</span><img src={publicAsset('/images/max-logo.svg')} alt="" aria-hidden="true"/></a>
+              <a className="contact-social-button" href="https://vk.com/" target="_blank" rel="noreferrer"><span>Группа в ВК</span><img src={publicAsset('/images/vk-logo.svg')} alt="" aria-hidden="true"/></a>
+            </div>
+          </div>
         </div>
       </section>
     </main>
