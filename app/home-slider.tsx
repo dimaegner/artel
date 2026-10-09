@@ -97,7 +97,7 @@ export default function HomeSlider() {
     <div className="showreel-controls" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
       <div className={`showreel-pagination ${active > 0 ? 'is-shifted' : ''}`} ref={rail} role="tablist" aria-label="Слайды">
         {slides.map((slide, index) => <button key={slide.preview} data-slide={index} className={`showreel-tab ${index === active ? 'is-active' : ''}`} type="button" role="tab" aria-selected={index === active} aria-controls={`showreel-slide-${index}`} aria-label={`Слайд ${index + 1}: ${slide.preview}`} onClick={() => goTo(index)}>
-          <span className="showreel-progress" aria-hidden="true"><span style={{ transform: `scaleX(${index === active ? progress : 0})` }}/></span>
+          <span className="showreel-progress" aria-hidden="true"><span style={{ width: `${index === active ? progress * 100 : 0}%` }}/></span>
           <span className="showreel-tab-content"><img className="showreel-tab-thumb" src={slide.thumbnail} alt="" aria-hidden="true" loading="lazy"/><span className="showreel-tab-copy"><span className="showreel-tab-number">{String(index + 1).padStart(2, '0')}</span><span className="showreel-tab-name">{slide.preview}</span></span></span>
         </button>)}
       </div>
