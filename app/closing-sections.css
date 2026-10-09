@@ -521,7 +521,7 @@
 }
 .home-showreel .showreel-copy{max-width:860px}
 .home-showreel .showreel-copy h1,.home-showreel .showreel-copy h2{max-width:860px}
-.home-hero-shell>.floating-header .desktop-nav{justify-content:center}
+.home-hero-shell>.floating-header .desktop-nav{position:absolute;left:50%;width:max-content;flex:none;margin:0;padding:0 24px;transform:translateX(-50%);justify-content:center}
 .home-hero-shell>.floating-header .header-contact{border:0!important;padding-left:0!important}
 .home-hero-shell>.floating-header.is-scrolled .brand-logo{filter:brightness(0) invert(1)!important}
 .home-hero-shell>.floating-header.is-scrolled .header-contact{color:#fff!important;border:0!important;padding:0!important;background:none!important}
