@@ -11,34 +11,31 @@ const slides = [
     title: 'Обследование, экспертиза и проектирование зданий',
     image: publicAsset('/images/design-reference/ref-00.webp'),
     imageAlt: 'Специалист обследует бетонную конструкцию измерительным прибором',
+    thumbnail: publicAsset('/images/hero-thumb-01.webp'),
     position: 'center',
   },
   {
-    preview: 'Строительно-техническая судебная экспертиза',
-    title: 'Строительно-техническая судебная экспертиза',
-    image: publicAsset('/images/design-reference/ref-03.webp'),
-    imageAlt: 'Строящийся объект с железобетонными конструкциями',
+    preview: 'Обследование зданий',
+    title: 'Проверяем качество и безопасность зданий',
+    image: publicAsset('/images/hero-slide-02.webp'),
+    imageAlt: 'Фасад торгового центра вечером',
+    thumbnail: publicAsset('/images/hero-thumb-02.webp'),
     position: 'center',
   },
   {
     preview: 'Проектирование зданий',
-    title: 'Проектирование зданий и сооружений',
-    image: publicAsset('/images/design-reference/ref-04.webp'),
-    imageAlt: 'Здание в процессе строительства',
-    position: 'center',
-  },
-  {
-    preview: 'Геодезические работы',
-    title: 'Геодезические работы',
-    image: publicAsset('/images/design-reference/ref-05.webp'),
-    imageAlt: 'Инженерные изыскания на строительной площадке',
+    title: 'Готовим проект и точные данные об участке',
+    image: publicAsset('/images/hero-slide-03.webp'),
+    imageAlt: 'Современные жилые дома с индивидуальными проектами',
+    thumbnail: publicAsset('/images/hero-thumb-03.webp'),
     position: 'center',
   },
   {
     preview: 'Сопровождение строительства',
-    title: 'Сопровождение строительства',
-    image: publicAsset('/images/design-reference/ref-06.webp'),
-    imageAlt: 'Промышленный строительный объект',
+    title: 'Помогаем вести строительство под контролем',
+    image: publicAsset('/images/hero-slide-04.webp'),
+    imageAlt: 'Строительная площадка, чертежи и геодезический прибор',
+    thumbnail: publicAsset('/images/hero-thumb-04.webp'),
     position: 'center',
   },
 ];
@@ -93,11 +90,15 @@ export default function HomeSlider() {
         {index === 0 ? <h1>Обследование, экспертиза<br/>и проектирование зданий</h1> : <h2>{slide.title}</h2>}
       </div>
     </article>)}
+    <div className="showreel-actions" aria-label="Связаться с Артелью">
+      <a className="showreel-action-primary" href="#contact">Написать нам</a>
+      <a className="showreel-action-secondary" href="https://max.ru/" target="_blank" rel="noreferrer">Написать в MAX<img src={publicAsset('/images/max-logo.svg')} alt="" aria-hidden="true"/></a>
+    </div>
     <div className="showreel-controls" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
       <div className={`showreel-pagination ${active > 0 ? 'is-shifted' : ''}`} ref={rail} role="tablist" aria-label="Слайды">
         {slides.map((slide, index) => <button key={slide.preview} data-slide={index} className={`showreel-tab ${index === active ? 'is-active' : ''}`} type="button" role="tab" aria-selected={index === active} aria-controls={`showreel-slide-${index}`} aria-label={`Слайд ${index + 1}: ${slide.preview}`} onClick={() => goTo(index)}>
           <span className="showreel-progress" aria-hidden="true"><span style={{ transform: `scaleX(${index === active ? progress : 0})` }}/></span>
-          <span className="showreel-tab-content"><span className="showreel-tab-thumb" aria-hidden="true"/><span className="showreel-tab-copy"><span className="showreel-tab-number">{String(index + 1).padStart(2, '0')}</span><span className="showreel-tab-name">{slide.preview}</span></span></span>
+          <span className="showreel-tab-content"><img className="showreel-tab-thumb" src={slide.thumbnail} alt="" aria-hidden="true" loading="lazy"/><span className="showreel-tab-copy"><span className="showreel-tab-number">{String(index + 1).padStart(2, '0')}</span><span className="showreel-tab-name">{slide.preview}</span></span></span>
         </button>)}
       </div>
       <div className="showreel-arrows"><button type="button" aria-label="Предыдущий слайд" onClick={() => goTo(active - 1)}><ArrowIcon direction="left"/></button><button type="button" aria-label="Следующий слайд" onClick={() => goTo(active + 1)}><ArrowIcon/></button></div>
