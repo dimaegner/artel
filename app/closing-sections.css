@@ -312,3 +312,145 @@
   .artel-home .licenses-track { scroll-behavior: auto; }
   .artel-home .licenses-controls button { transition: none; }
 }
+
+/* Final measured alignment from the latest Desktop.svg export. */
+.artel-home .licenses-section {
+  padding: 2.57vw 20px 24px;
+}
+
+.artel-home .licenses-heading {
+  width: min(454px, 100%);
+  min-height: 64px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 auto 64px;
+  padding: 11px 0 0;
+  border-top-width: 3px;
+}
+
+.artel-home .licenses-heading > p {
+  width: 250px;
+  max-width: 250px;
+  font-size: 14px;
+  line-height: 1.05;
+}
+
+.artel-home .licenses-controls { gap: 6px; }
+.artel-home .licenses-controls button { width: 48px; height: 48px; }
+.artel-home .license-document figcaption { display: none; }
+
+.artel-home .news-section .news-heading h2 {
+  width: 100%;
+  text-align: center;
+}
+
+.artel-home .news-more {
+  position: absolute;
+  top: 20vw;
+  left: 50%;
+  display: flex;
+  width: min(454px, calc(100% - 40px));
+  min-height: 64px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 11px;
+  transform: translateX(-50%);
+  border-top: 3px solid #fff;
+  color: #fff;
+}
+
+.artel-home .news-more > span {
+  max-width: 300px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.artel-home .news-controls { display: flex; gap: 6px; margin-top: 1px; }
+.artel-home .news-controls button {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.artel-home .news-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+
+.artel-home .news-grid::-webkit-scrollbar { display: none; }
+.artel-home .news-card { flex: 0 0 min(560px, 38.9vw); scroll-snap-align: start; }
+
+.artel-home .footer-legal { align-items: center; }
+.artel-home .footer-credit {
+  flex: 0 0 auto;
+  padding: 12px 18px;
+  border-radius: 24px;
+  background: #303030;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+.artel-home .outline-action { min-height: 48px; }
+.artel-home .outline-action > span { min-height: 48px; }
+.artel-home .outline-action i { width: 48px; height: 48px; }
+.artel-home .situation-card .outline-action { min-height: 48px; font-size: 14px; }
+.artel-home .situation-card .outline-action > span { min-height: 48px; padding-inline: 13px; }
+.artel-home .situation-card .outline-action i { width: 48px; height: 48px; }
+
+.artel-home .contact-outline { font-size: 11px; }
+.artel-home .contact-outline > span { min-height: 48px; }
+.artel-home .contact-outline i,
+.artel-home .contact-form .form-submit i { width: 48px; height: 48px; flex-basis: 48px; }
+.artel-home .contact-form .form-submit { min-height: 48px; }
+.artel-home .contact-form .form-submit > span { min-height: 48px; }
+
+@media (min-width: 1101px) {
+  .artel-home .showreel-copy { top: 63.1%; bottom: auto; }
+}
+
+@media (max-width: 1100px) {
+  .artel-home .showreel-copy { top: auto; bottom: 280px; }
+}
+
+@media (max-width: 640px) {
+  .artel-home .licenses-section { padding: 52px 12px 20px; }
+  .artel-home .licenses-heading {
+    width: 100%;
+    min-height: 52px;
+    margin-bottom: 30px;
+    gap: 8px;
+  }
+  .artel-home .licenses-heading > p { width: auto; max-width: 230px; font-size: 11px; }
+  .artel-home .licenses-controls { gap: 5px; }
+  .artel-home .licenses-controls button { width: 38px; height: 38px; }
+  .artel-home .news-section .news-heading h2 { text-align: left; }
+  .artel-home .news-more {
+    top: 235px;
+    left: 6%;
+    width: min(320px, 82vw);
+    min-height: 48px;
+    transform: none;
+    padding-top: 9px;
+  }
+  .artel-home .news-more > span { max-width: 210px; font-size: 11px; }
+  .artel-home .news-controls { gap: 4px; }
+  .artel-home .news-controls button { width: 36px; height: 36px; flex-basis: 36px; }
+  .artel-home .news-card { flex-basis: 82vw; }
+  .artel-home .footer-legal { align-items: flex-start; }
+}

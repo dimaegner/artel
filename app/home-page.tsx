@@ -3,6 +3,7 @@ import SiteHeader from './site-header';
 import HomeSlider from './home-slider';
 import ContactForm from './contact-form';
 import LicensesSlider from './licenses-slider';
+import NewsSlider from './news-slider';
 import { publicAsset } from '@/lib/public-asset';
 import './redesign.css';
 import './reference-page.css';
@@ -63,7 +64,7 @@ export default function HomePage() {
       <section className="about-section" id="about" aria-label="О компании и показатели">
         <div className="about-photo" role="img" aria-label="Строительная площадка с возводимым зданием" style={{ backgroundImage: `url('${publicAsset('/images/design-reference/ref-13.webp')}')` }}/>
         <div className="about-copy"><h2>Артель — региональный центр строительных исследований. Работаем с 2010 года: проводим экспертизы и обследования, выполняем инженерные изыскания и проектирование, сопровождаем строительство. Работаем с судами, организациями и частными заказчиками, а исследования проводим по научно обоснованным методикам с применением специализированного оборудования.</h2><a className="outline-action" href="https://arteltmn.ru/o-nas/" target="_blank" rel="noreferrer"><span>Подробнее</span><i><ArrowIcon/></i></a></div>
-        <div className="metrics-row"><div><strong>2010</strong><span>год основания</span></div><div><strong>1700</strong><span>проведённых экспертиз</span></div><div><strong>139</strong><span>завершённых проектов</span></div></div>
+        <div className="metrics-row"><div><strong>2010</strong><span>год основания компании</span></div><div><strong>1700</strong><span>проведённых экспертиз</span></div><div><strong>139</strong><span>завершённых проектов</span></div></div>
       </section>
 
       <section className="reviews-section" id="reviews" aria-label="Отзывы клиентов и благодарственные письма">
@@ -72,8 +73,7 @@ export default function HomePage() {
       </section>
 
       <section className="news-section" id="news" aria-labelledby="news-title">
-        <div className="news-heading"><h2 id="news-title">События и новости компании</h2><a className="projects-more" href="https://arteltmn.ru/novosti/" target="_blank" rel="noreferrer"><span>Больше готовых проектов,<br/>разделённых по направлениям</span><i><ArrowIcon/></i></a></div>
-        <div className="news-grid">{news.map((item) => <a className="news-card" href="https://arteltmn.ru/novosti/" key={item.title} target="_blank" rel="noreferrer"><img src={publicAsset(`/images/design-reference/${item.image}`)} alt="" loading="lazy"/><span className="news-badges"><span>{item.title}</span><small>{item.note}</small></span></a>)}</div>
+        <NewsSlider items={news}/>
       </section>
 
       <section className="licenses-section" id="licenses" aria-labelledby="licenses-title">
@@ -108,10 +108,10 @@ export default function HomePage() {
           <address className="contact-details">
             <div className="contact-item"><span>Телефон</span><a href="tel:+73452606055">+7 3452 60 60 55</a><a href="tel:+73452605960">+7 3452 60 59 60</a></div>
             <div className="contact-item"><span>Эл. почта</span><a href="mailto:info@arteltmn.ru">info@arteltmn.ru</a></div>
-            <div className="contact-item"><span>Адрес офиса</span><p>Тюмень, ул. Республики, 14/1, 3 этаж</p><a className="contact-outline" href="https://yandex.ru/maps/?text=%D0%A2%D1%8E%D0%BC%D0%B5%D0%BD%D1%8C%2C%20%D1%83%D0%BB.%20%D0%A0%D0%B5%D1%81%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B8%2C%2014%2F1" target="_blank" rel="noreferrer"><span>Открыть на карте</span><i><img src={publicAsset('/images/map-open-icon.svg')} alt="" aria-hidden="true"/></i></a></div>
+            <div className="contact-item"><span>Адрес офиса</span><p>Тюмень, ул. Республики, 14/1, 3 этаж</p><a className="contact-outline" href="https://yandex.ru/maps/?text=%D0%A2%D1%8E%D0%BC%D0%B5%D0%BD%D1%8C%2C%20%D1%83%D0%BB.%20%D0%A0%D0%B5%D1%81%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B8%2C%2014%2F1" target="_blank" rel="noreferrer"><span>Проложить маршрут</span><i><img src={publicAsset('/images/map-open-icon.svg')} alt="" aria-hidden="true"/></i></a></div>
             <div className="contact-socials">
               <a className="contact-outline" href="https://max.ru/" target="_blank" rel="noreferrer"><span>Написать в MAX</span><i><img src={publicAsset('/images/max-logo.svg')} alt="" aria-hidden="true"/></i></a>
-              <a className="contact-outline" href="https://vk.com/" target="_blank" rel="noreferrer"><span>Написать в VK</span><i><img src={publicAsset('/images/vk-logo.svg')} alt="" aria-hidden="true"/></i></a>
+              <a className="contact-outline" href="https://vk.com/" target="_blank" rel="noreferrer"><span>Группа в ВК</span><i><img src={publicAsset('/images/vk-logo.svg')} alt="" aria-hidden="true"/></i></a>
             </div>
           </address>
           <ContactForm/>
@@ -126,7 +126,7 @@ export default function HomePage() {
         <nav className="footer-column" aria-label="О компании"><h2>О компании</h2><a href="#contact">Реквизиты</a><a href="https://arteltmn.ru/o-nas/" target="_blank" rel="noreferrer">Команда</a><a href="https://arteltmn.ru/tehnicheskaja-baza/" target="_blank" rel="noreferrer">Техническая база</a><a href="#licenses">Лицензии и сертификаты</a><a href="#reviews">Наши клиенты</a><a href="#reviews">Благодарственные письма и отзывы</a></nav>
         <nav className="footer-column" aria-label="Проекты"><h2>Проекты</h2><a href="#projects">Экспертизы</a><a href="#projects">Обследования</a><a href="#projects">Проектирование</a></nav>
       </div>
-      <div className="footer-legal"><p>ИНН 7204159747　 КПП 720301001　 ОГРН 1107232034282</p><div><a href="https://arteltmn.ru/politika-konfidencialnosti/" target="_blank" rel="noreferrer">Политика обработки персональных данных</a><a href="https://arteltmn.ru/politika-konfidencialnosti/" target="_blank" rel="noreferrer">Согласие на обработку персональных данных</a></div></div>
+      <div className="footer-legal"><p>ИНН 7204159747　 КПП 720301001　 ОГРН 1107232034282</p><div><a href="https://arteltmn.ru/politika-konfidencialnosti/" target="_blank" rel="noreferrer">Политика обработки персональных данных</a><a href="https://arteltmn.ru/politika-konfidencialnosti/" target="_blank" rel="noreferrer">Согласие на обработку персональных данных</a></div><span className="footer-credit">Сайт разработан 3LL</span></div>
     </footer>
   </div>;
 }
