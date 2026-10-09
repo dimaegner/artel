@@ -447,9 +447,8 @@
 .showreel-copy{z-index:2;left:40px;right:40px;bottom:158px;top:auto;transform:none;width:auto;max-width:860px;padding:0;color:#fff!important;text-shadow:0 2px 12px #0008!important}
 .showreel-copy h1,.showreel-copy h2{display:block;margin:0;max-width:860px;font-size:clamp(42px,4vw,64px);line-height:.98;letter-spacing:-.048em;font-weight:700;text-transform:none;color:#fff;text-shadow:inherit}
 .showreel-controls{z-index:3;left:0;right:0;bottom:0;height:111px;min-height:111px;display:block;padding:0 24px;background:none;border:0;color:#fff}
-.showreel-pagination{position:relative;display:flex;align-items:stretch;gap:20px;width:min(1030px,calc(100% - 145px));height:111px;padding:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;mask-image:none;-webkit-mask-image:none;scroll-behavior:smooth}
+.showreel-pagination{--preview-fade-start:66;--preview-fade-end:82;position:relative;display:flex;align-items:stretch;gap:20px;width:min(1030px,calc(100% - 145px));height:111px;padding:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;mask-image:none;-webkit-mask-image:none;scroll-behavior:smooth}
 .showreel-pagination::-webkit-scrollbar{display:none}
-.showreel-pagination.has-overflow-right{mask-image:linear-gradient(to right,#000 0%,#000 87%,transparent 100%);-webkit-mask-image:linear-gradient(to right,#000 0%,#000 87%,transparent 100%)}
 .showreel-pagination .showreel-tab{display:block;flex:0 0 304px;width:304px;min-width:304px;height:111px;margin:0;padding:0;border:0;background:none;color:#fff;text-align:left;text-transform:uppercase;cursor:pointer}
 .showreel-pagination .showreel-tab:first-child{padding-left:0}
 .showreel-progress{position:relative;display:block;width:100%;height:2px;margin:0;background:#ffffff55;overflow:hidden}
@@ -509,8 +508,7 @@
   .showreel-actions a{min-height:42px;font-size:12px}
   .showreel-action-secondary img{width:16px;height:16px}
   .showreel-controls{height:116px;min-height:116px;padding:0 16px}
-  .showreel-pagination{width:calc(100% - 76px);height:116px;gap:12px}
-  .showreel-pagination.has-overflow-right{mask-image:linear-gradient(to right,#000 0%,#000 79%,transparent 100%);-webkit-mask-image:linear-gradient(to right,#000 0%,#000 79%,transparent 100%)}
+  .showreel-pagination{--preview-fade-start:62;--preview-fade-end:82;width:calc(100% - 76px);height:116px;gap:12px}
   .showreel-pagination .showreel-tab{flex-basis:220px;width:220px;min-width:220px;height:116px}
   .showreel-tab-content{grid-template-columns:70px minmax(0,1fr);gap:9px;margin-top:13px}
   .showreel-tab-content img,.showreel-tab-thumb{width:70px;height:55px}

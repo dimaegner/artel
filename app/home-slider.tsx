@@ -2,6 +2,7 @@
 /* oxlint-disable next/no-img-element -- Full-bleed and thumbnail images use the same local source files. */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import ArrowIcon from './arrow-icon';
 import { publicAsset } from '@/lib/public-asset';
 
@@ -38,6 +39,15 @@ const slides = [
     thumbnail: publicAsset('/images/hero-thumb-04.webp'),
     position: 'center',
   },
+  {
+    preview: 'Строительная экспертиза здания школы',
+    title: 'Строительная экспертиза здания школы',
+    image: publicAsset('/images/hero-slide-05.webp'),
+    imageAlt: 'Здание школы с оранжевыми декоративными панелями',
+    thumbnail: publicAsset('/images/hero-thumb-05.webp'),
+    position: 'center',
+    projectHref: 'https://arteltmn.ru/realizovannye-obekty/',
+  },
 ];
 
 const SLIDE_DURATION_MS = 7000;
@@ -46,7 +56,6 @@ export default function HomeSlider() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [hasOverflowRight, setHasOverflowRight] = useState(false);
   const elapsed = useRef(0);
   const lastFrame = useRef<number | null>(null);
   const rail = useRef<HTMLDivElement>(null);
@@ -107,7 +116,31 @@ export default function HomeSlider() {
   useEffect(() => {
     const container = rail.current;
     if (!container) return;
-    const updateOverflow = () => setHasOverflowRight(container.scrollWidth > container.clientWidth + container.scrollLeft + 1);
+    const updateOverflow = () => {
+      const hasOverflowRight = container.scrollWidth > container.clientWidth + container.scrollLeft + 1;
+      const styles = getComputedStyle(container);
+      const fadeStart = container.clientWidth * (Number.parseFloat(styles.getPropertyValue('--preview-fade-start')) / 100 || 70);
+      const fadeEnd = container.clientWidth * (Number.parseFloat(styles.getPropertyValue('--preview-fade-end')) / 100 || 84);
+
+      container.querySelectorAll<HTMLButtonElement>('.showreel-tab').forEach((tab) => {
+        const content = tab.querySelector<HTMLElement>('.showreel-tab-content');
+        if (!content) return;
+        const left = tab.offsetLeft - container.scrollLeft;
+        const right = left + tab.offsetWidth;
+
+        if (!hasOverflowRight || right <= fadeStart) {
+          content.style.maskImage = 'none';
+          content.style.webkitMaskImage = 'none';
+          return;
+        }
+
+        const start = Math.max(0, Math.min(100, ((fadeStart - left) / tab.offsetWidth) * 100));
+        const end = Math.max(start, Math.min(100, ((fadeEnd - left) / tab.offsetWidth) * 100));
+        const mask = `linear-gradient(to right, #000 0%, #000 ${start}%, transparent ${end}%, transparent 100%)`;
+        content.style.maskImage = mask;
+        content.style.webkitMaskImage = mask;
+      });
+    };
     updateOverflow();
     container.addEventListener('scroll', updateOverflow, { passive: true });
     const observer = new ResizeObserver(updateOverflow);
@@ -123,6 +156,7 @@ export default function HomeSlider() {
       <img className="showreel-photo" src={slide.image} alt={index === active ? slide.imageAlt : ''} style={{ objectPosition: slide.position }} fetchPriority={index === 0 ? 'high' : undefined}/>
       <div className="showreel-copy">
         {index === 0 ? <h1>Обследование, экспертиза<br/>и проектирование зданий</h1> : <h2>{slide.title}</h2>}
+        {slide.projectHref && <a className="showreel-slide-link" href={slide.projectHref} target="_blank" rel="noreferrer"><span>Подробнее о проекте</span><i><ArrowUpRight size={18} aria-hidden="true"/></i></a>}
       </div>
     </article>)}
     <div className="showreel-actions" aria-label="Связаться с Артелью">
@@ -130,7 +164,7 @@ export default function HomeSlider() {
       <a className="showreel-action-secondary" href="https://max.ru/" target="_blank" rel="noreferrer">Написать в MAX<img src={publicAsset('/images/max-logo.svg')} alt="" aria-hidden="true"/></a>
     </div>
     <div className="showreel-controls" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
-      <div className={`showreel-pagination ${hasOverflowRight ? 'has-overflow-right' : ''}`} ref={rail} role="tablist" aria-label="Слайды">
+      <div className="showreel-pagination" ref={rail} role="tablist" aria-label="Слайды">
         {slides.map((slide, index) => <button key={slide.preview} data-slide={index} className={`showreel-tab ${index === active ? 'is-active' : ''}`} type="button" role="tab" aria-selected={index === active} aria-controls={`showreel-slide-${index}`} aria-label={`Слайд ${index + 1}: ${slide.preview}`} onClick={() => goTo(index)}>
           <span className="showreel-progress" aria-hidden="true"><span style={{ width: `${index === active ? progress * 100 : 0}%` }}/></span>
           <span className="showreel-tab-content"><img className="showreel-tab-thumb" src={slide.thumbnail} alt="" aria-hidden="true" loading="lazy"/><span className="showreel-tab-copy"><span className="showreel-tab-number">{String(index + 1).padStart(2, '0')}</span><span className="showreel-tab-name">{slide.preview}</span></span></span>
