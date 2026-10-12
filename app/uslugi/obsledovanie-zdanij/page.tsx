@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ArrowDownRight, ArrowRight, Check } from 'lucide-react';
 import SiteHeader from '../../site-header';
-import ContactForm from '../../contact-form';
+import { ContactSection, ProjectsSection, SiteFooter } from '../../shared-home-sections';
 import { publicAsset } from '@/lib/public-asset';
 import '../../redesign.css';
 import '../../reference-page.css';
@@ -21,10 +21,10 @@ const contents = [
   ['instrumental', 'Инструментальное обследование'],
   ['goals', 'Цели обследования'],
   ['result', 'Результат обследования и заключение'],
-  ['cases', 'Примеры выполненных объектов'],
+  ['projects', 'Примеры выполненных объектов'],
   ['advantages', 'Преимущества компании'],
   ['price', 'Стоимость'],
-  ['request', 'Форма заявки'],
+  ['contact', 'Контакты и адрес'],
 ] as const;
 
 const goals = [
@@ -36,12 +36,6 @@ const goals = [
   'Проверить соответствие объекта проектной документации и требованиям.',
 ];
 
-const cases = [
-  { title: 'Средняя школа № 1', place: 'Тарко-Сале, ЯНАО', image: 'hero-slide-05.webp' },
-  { title: 'Школа-интернат', place: 'Мыс Каменный, ЯНАО', image: 'work-inspection.jpg' },
-  { title: 'Учебные корпуса ГАУ Северного Зауралья', place: 'Тюменская область', image: 'ref-01.webp' },
-];
-
 export default function InspectionServicePage() {
   return <div className="artel-home inspection-page">
     <div className="home-hero-shell inspection-hero" id="home">
@@ -51,7 +45,7 @@ export default function InspectionServicePage() {
         <p className="inspection-eyebrow">Услуги / Обследование зданий</p>
         <h1>Обследование зданий и сооружений</h1>
         <p className="inspection-hero-lead">Оценим техническое состояние конструкций, зафиксируем дефекты и подготовим рекомендации для безопасной эксплуатации, ремонта или реконструкции.</p>
-        <a className="inspection-hero-cta" href="#request"><span>Обсудить задачу</span><i><ArrowDownRight size={19}/></i></a>
+        <a className="inspection-hero-cta" href="#contact"><span>Обсудить задачу</span><i><ArrowDownRight size={19}/></i></a>
       </div>
       <a className="inspection-scroll" href="#short"><span>Листайте ниже</span><ArrowRight size={16}/></a>
       <div className="inspection-hero-index"><span>01</span><span>Техническое обследование</span></div>
@@ -101,13 +95,10 @@ export default function InspectionServicePage() {
 
       <section className="inspection-result" id="result">
         <div className="inspection-result-image"><img src={publicAsset('/images/work-inspection.jpg')} alt="Инженер изучает конструкции здания" loading="lazy"/></div>
-        <div className="inspection-result-copy"><p className="inspection-kicker">Итог работ</p><h2>Результат обследования и заключение</h2><p>По итогам заказчик получает техническое заключение с информацией об объекте и выводами специалистов.</p><ul><li>описание исследованных конструкций и выявленных дефектов;</li><li>фотографии и материалы обследования;</li><li>оценка технического состояния в рамках поставленной задачи;</li><li>выводы и рекомендации по дальнейшим действиям.</li></ul><a className="inspection-text-link" href="#request">Обсудить состав заключения <ArrowRight size={17}/></a></div>
+        <div className="inspection-result-copy"><p className="inspection-kicker">Итог работ</p><h2>Результат обследования и заключение</h2><p>По итогам заказчик получает техническое заключение с информацией об объекте и выводами специалистов.</p><ul><li>описание исследованных конструкций и выявленных дефектов;</li><li>фотографии и материалы обследования;</li><li>оценка технического состояния в рамках поставленной задачи;</li><li>выводы и рекомендации по дальнейшим действиям.</li></ul><a className="inspection-text-link" href="#contact">Обсудить состав заключения <ArrowRight size={17}/></a></div>
       </section>
 
-      <section className="inspection-cases" id="cases">
-        <div className="inspection-section-heading"><p className="inspection-kicker">Опыт на реальных объектах</p><h2>Примеры выполненных объектов</h2><a href="https://arteltmn.ru/realizovannye-obekty/obsledovanija/" target="_blank" rel="noreferrer">Все обследования <ArrowRight size={17}/></a></div>
-        <div className="inspection-case-grid">{cases.map((item, index) => <a className="inspection-case" href="https://arteltmn.ru/realizovannye-obekty/obsledovanija/" target="_blank" rel="noreferrer" key={item.title}><div className="inspection-case-image"><img src={publicAsset(`/images/${item.image}`)} alt="" loading="lazy"/><span>0{index + 1}</span></div><h3>{item.title}</h3><p>{item.place}</p><i><ArrowRight size={18}/></i></a>)}</div>
-      </section>
+      <ProjectsSection />
 
       <section className="inspection-advantages" id="advantages">
         <div><p className="inspection-kicker">Почему Артель</p><h2>Инженерный подход и ответственность за выводы</h2></div>
@@ -116,15 +107,12 @@ export default function InspectionServicePage() {
 
       <section className="inspection-price" id="price">
         <div><p className="inspection-kicker">Расчёт стоимости</p><h2>Стоимость зависит от объекта и задачи</h2></div>
-        <div><p>На цену влияют назначение и размеры здания, доступность конструкций, необходимая глубина исследования и состав итоговых материалов. Чтобы рассчитать стоимость, расскажите нам об объекте — специалист уточнит исходные данные и предложит программу работ.</p><a className="inspection-hero-cta inspection-cta-dark" href="#request"><span>Запросить расчёт</span><i><ArrowDownRight size={19}/></i></a></div>
+        <div><p>На цену влияют назначение и размеры здания, доступность конструкций, необходимая глубина исследования и состав итоговых материалов. Чтобы рассчитать стоимость, расскажите нам об объекте — специалист уточнит исходные данные и предложит программу работ.</p><a className="inspection-hero-cta inspection-cta-dark" href="#contact"><span>Запросить расчёт</span><i><ArrowDownRight size={19}/></i></a></div>
       </section>
 
-      <section className="inspection-request" id="request">
-        <div className="inspection-request-copy"><p className="inspection-kicker">Первый шаг</p><h2>Расскажите, что нужно обследовать</h2><p>Оставьте контакты и кратко опишите объект. Мы свяжемся с вами, уточним задачу и подскажем, какие данные понадобятся для расчёта.</p><a href="tel:+73452606055">+7 3452 60 60 55</a><a href="mailto:info@arteltmn.ru">info@arteltmn.ru</a></div>
-        <div className="inspection-request-form"><h3>Обсудить объект</h3><ContactForm/></div>
-      </section>
+      <ContactSection />
     </main>
 
-    <footer className="inspection-footer"><a className="inspection-footer-logo" href="#home"><img src={publicAsset('/images/artel-logo.svg')} alt="Артель"/></a><span>© 2026 РЦСИ «Артель»</span><a href="https://arteltmn.ru/" target="_blank" rel="noreferrer">Основной сайт <ArrowRight size={15}/></a></footer>
+    <SiteFooter homePath={publicAsset('/')} />
   </div>;
 }
