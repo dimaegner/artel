@@ -9,7 +9,7 @@ import './reference-page.css';
 import './closing-sections.css';
 
 const services = [
-  { title: 'Обследование зданий и сооружений', image: 'ref-01.webp', href: 'https://arteltmn.ru/2019/07/28/obsledovanie-tehnicheskogo-sostojanija-zdanij-i-sooruzhenij/' },
+  { title: 'Обследование зданий и сооружений', image: 'ref-01.webp', href: publicAsset('/uslugi/obsledovanie-zdanij.html') },
   { title: 'Строительно-техническая судебная экспертиза', image: 'ref-02.webp', href: 'https://arteltmn.ru/2019/07/31/sudebnaja-stroitelno-tehnicheskaja-jekspertiza/' },
   { title: 'Проектирование зданий и сооружений', image: 'ref-04.webp', href: '#projects' },
   { title: 'Геодезические работы', image: 'ref-05.webp', href: '#projects' },
