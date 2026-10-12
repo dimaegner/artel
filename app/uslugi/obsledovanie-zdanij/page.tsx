@@ -45,7 +45,7 @@ const cases = [
 export default function InspectionServicePage() {
   return <div className="artel-home inspection-page">
     <div className="home-hero-shell inspection-hero" id="home">
-      <SiteHeader />
+      <SiteHeader homePath={publicAsset('/')} />
       <div className="inspection-hero-image"><img src={publicAsset('/images/hero-inspection-generated.png')} alt="Специалист Артели обследует бетонную конструкцию здания" fetchPriority="high"/></div>
       <div className="inspection-hero-content">
         <p className="inspection-eyebrow">Услуги / Обследование зданий</p>
